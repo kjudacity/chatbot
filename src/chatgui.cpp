@@ -5,6 +5,9 @@
 #include "chatbot.h"
 #include "chatlogic.h"
 #include "chatgui.h"
+// KJ - add memory 
+#include <memory>
+
 
 // size of chatbot window
 const int width = 414;
@@ -118,7 +121,9 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     ////
 
     // create chat logic instance
-    _chatLogic = new ChatLogic(); 
+    //_chatLogic = new ChatLogic(); 
+    // KJ - update to be unique pointer
+    _chatLogic = std::make_unique<ChatLogic>();
 
     // pass pointer to chatbot dialog so answers can be displayed in GUI
     _chatLogic->SetPanelDialogHandle(this);
@@ -134,8 +139,8 @@ ChatBotPanelDialog::~ChatBotPanelDialog()
 {
     //// STUDENT CODE
     ////
-
-    delete _chatLogic;
+    // KJ - this guy shouldn't be deleteing chatLogic TODO...where do i delet him now?
+    // delete _chatLogic;
 
     ////
     //// EOF STUDENT CODE

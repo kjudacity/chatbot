@@ -30,6 +30,13 @@ public:
     //// STUDENT CODE
     ////
 
+    // KJ - Adding the rest of the rule of 5: 
+    // copy constructor, copy assignment operator, move constructor, move assignment operator (destructor is already written)
+    ChatBot(const ChatBot &other); //Copy Constructor
+    ChatBot &operator=(const ChatBot &other); // Copy Assignment Operator
+    ChatBot(ChatBot &&other); // Move Constructor
+    ChatBot &operator=(ChatBot &&other); // Move Assignment Operator
+
     ////
     //// EOF STUDENT CODE
 
