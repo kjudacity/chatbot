@@ -5,6 +5,9 @@
 #include <string>
 #include "chatgui.h"
 
+// KJ - Add memory
+#include <memory>
+
 // forward declarations
 class ChatBot;
 class GraphEdge;
@@ -17,8 +20,10 @@ private:
     ////
 
     // data handles (owned)
-    std::vector<GraphNode *> _nodes;
-    std::vector<GraphEdge *> _edges;
+    // KJ - make it nodes exclusive
+    //std::vector<GraphNode *> _nodes;
+    std::vector<std::unique_ptr<GraphNode>> _nodes;
+    std::vector<GraphEdge *> _edges; //this isn't here any more TODO - put it back for now... need to move this
 
     ////
     //// EOF STUDENT CODE

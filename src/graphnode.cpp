@@ -11,7 +11,7 @@ GraphNode::~GraphNode()
     //// STUDENT CODE
     ////
 
-    delete _chatBot; 
+    //delete _chatBot; // KJ - We don't need to delete chatbot
 
     ////
     //// EOF STUDENT CODE
@@ -36,14 +36,14 @@ void GraphNode::AddEdgeToChildNode(GraphEdge *edge)
 ////
 void GraphNode::MoveChatbotHere(ChatBot *chatbot)
 {
-    _chatBot = chatbot;
-    _chatBot->SetCurrentNode(this);
+    _chatBot = chatbot; // use the move constructor that was overloaded;
+    _chatBot.SetCurrentNode(this);
 }
 
 void GraphNode::MoveChatbotToNewNode(GraphNode *newNode)
 {
-    newNode->MoveChatbotHere(_chatBot);
-    _chatBot = nullptr; // invalidate pointer at source
+    newNode->MoveChatbotHere(std::move(_chatBot));  // KJ - move the pointer
+    //_chatBot = nullptr; // invalidate pointer at source - KJ - not needed
 }
 ////
 //// EOF STUDENT CODE
@@ -53,7 +53,7 @@ GraphEdge *GraphNode::GetChildEdgeAtIndex(int index)
     //// STUDENT CODE
     ////
 
-    return _childEdges[index];
+    return _childEdges[index].get(); // KJ - return the pointer
 
     ////
     //// EOF STUDENT CODE

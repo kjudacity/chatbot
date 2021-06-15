@@ -6,24 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/workspace/chatbot/src/chatbot.cpp
-iostream
--
-random
--
-algorithm
--
-ctime
--
-chatlogic.h
-/home/workspace/chatbot/src/chatlogic.h
-graphnode.h
-/home/workspace/chatbot/src/graphnode.h
-graphedge.h
-/home/workspace/chatbot/src/graphedge.h
-chatbot.h
-/home/workspace/chatbot/src/chatbot.h
-
 /home/workspace/chatbot/src/chatbot.h
 wx/bitmap.h
 -
@@ -36,6 +18,32 @@ wx/wx.h
 memory
 -
 
+/home/workspace/chatbot/src/chatlogic.cpp
+fstream
+-
+sstream
+-
+iostream
+-
+vector
+-
+iterator
+-
+tuple
+-
+algorithm
+-
+graphedge.h
+/home/workspace/chatbot/src/graphedge.h
+graphnode.h
+/home/workspace/chatbot/src/graphnode.h
+chatbot.h
+/home/workspace/chatbot/src/chatbot.h
+chatlogic.h
+/home/workspace/chatbot/src/chatlogic.h
+memory
+-
+
 /home/workspace/chatbot/src/chatlogic.h
 vector
 -
@@ -43,12 +51,20 @@ string
 -
 chatgui.h
 /home/workspace/chatbot/src/chatgui.h
+memory
+-
 
 /home/workspace/chatbot/src/graphedge.h
 vector
 -
 string
 -
+
+/home/workspace/chatbot/src/graphnode.cpp
+graphedge.h
+/home/workspace/chatbot/src/graphedge.h
+graphnode.h
+/home/workspace/chatbot/src/graphnode.h
 
 /home/workspace/chatbot/src/graphnode.h
 vector
@@ -57,6 +73,8 @@ string
 -
 chatbot.h
 /home/workspace/chatbot/src/chatbot.h
+memory
+-
 
 /usr/include/wx-3.0/wx/accel.h
 wx/defs.h
