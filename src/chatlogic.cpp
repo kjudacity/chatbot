@@ -20,11 +20,7 @@ ChatLogic::ChatLogic()
     //// STUDENT CODE
     ////
 
-    // create instance of chatbot
-    //_chatBot = new ChatBot("../images/chatbot.png");
-
-    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    //_chatBot->SetChatLogicHandle(this);
+    // KJ - removed, _chatBot is no longer managed by ChatLogic 
 
     ////
     //// EOF STUDENT CODE
@@ -35,20 +31,7 @@ ChatLogic::~ChatLogic()
     //// STUDENT CODE
     ////
 
-    // delete chatbot instance - KJ we don't delete it here now
-    // delete _chatBot;
-
-    // delete all nodes
-    for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
-    {
-        delete (*it).get(); // KJ - fix from raw pointer TODO!!! Need to fix
-    }
-
-    // delete all edges
-    for (auto it = std::begin(_edges); it != std::end(_edges); ++it)
-    {
-        delete *it;
-    }
+    // KJ - removed, _chatBot, _nodes, and _edges are no longer managed by ChatLogic 
 
     ////
     //// EOF STUDENT CODE
@@ -135,7 +118,6 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                         // create new element if ID does not yet exist
                         if (newNode == _nodes.end())
                         {
-                            //_nodes.emplace_back(new GraphNode(id));
                             _nodes.emplace_back(std::make_unique<GraphNode>(id)); //KJ - make the node unique
                             newNode = _nodes.end() - 1; // get iterator to last element
 
@@ -164,18 +146,16 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                             auto childNode = std::find_if(_nodes.begin(), _nodes.end(), [&childToken](std::unique_ptr<GraphNode> const& node) { return node->GetID() == std::stoi(childToken->second); });
 
                             // create new edge
-                            // GraphEdge *edge = new GraphEdge(id);
-                            auto edge = std::make_unique<GraphEdge>(id); // KJ - Make the graph edge unique TODO...check this...
-                            edge->SetChildNode((*childNode).get()); // KJ - updated to handle pointer
-                            edge->SetParentNode((*parentNode).get()); // KJ - updated to handle pointer
-                            _edges.push_back(edge.get()); // KJ - This needs to be a pointer
+                            auto edge = std::make_unique<GraphEdge>(id); // KJ - Make the graph edge unique 
+                            edge->SetChildNode((*childNode).get()); // KJ - the function still needs a pointer address
+                            edge->SetParentNode((*parentNode).get()); // KJ - the function still needs a pointer address
 
                             // find all keywords for current node
                             AddAllTokensToElement("KEYWORD", tokens, *edge);
 
                             // store reference in child node and parent node
-                            (*childNode)->AddEdgeToParentNode(edge.get()); // KJ - get the pointer TODO check this
-                            (*parentNode)->AddEdgeToChildNode(edge.get()); //KJ move it TODO check this
+                            (*childNode)->AddEdgeToParentNode(edge.get()); // KJ - get the pointer address
+                            (*parentNode)->AddEdgeToChildNode(std::move(edge)); //KJ move edge to child node
                         }
 
                         ////
@@ -211,7 +191,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 
             if (rootNode == nullptr)
             {
-                rootNode = (*it).get(); // assign current node to root KJ - changed to get correct pointer
+                rootNode = (*it).get(); // assign current node to root KJ - changed to get correct pointer address
             }
             else
             {
@@ -224,9 +204,8 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     ChatBot localChatbot("../images/chatbot.png");
     localChatbot.SetChatLogicHandle(this);
     localChatbot.SetRootNode(rootNode);
-    // add chatbot to graph root node
-    //_chatBot->SetRootNode(rootNode);
-    //auto c = _chatBot - KJ move chatbot
+
+    // add chatbot to graph root node - KJ need to use move now
     rootNode->MoveChatbotHere(std::move(localChatbot)); 
     
     ////

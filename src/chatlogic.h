@@ -20,10 +20,8 @@ private:
     ////
 
     // data handles (owned)
-    // KJ - make it nodes exclusive
-    //std::vector<GraphNode *> _nodes;
+    // KJ - make nodes exclusive
     std::vector<std::unique_ptr<GraphNode>> _nodes;
-    std::vector<GraphEdge *> _edges; //this isn't here any more TODO - put it back for now... need to move this
 
     ////
     //// EOF STUDENT CODE

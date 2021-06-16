@@ -17,7 +17,8 @@ private:
 
     //// STUDENT CODE
     ////
-    // make this a unique pointer
+
+    // KJ - make this a unique pointer
     std::unique_ptr<ChatLogic> _chatLogic;
 
     ////
@@ -29,7 +30,7 @@ public:
     ~ChatBotPanelDialog();
 
     // getter / setter
-    //ChatLogic *GetChatLogicHandle() { return _chatLogic; }
+
     // KJ - need to get the raw pointer not unique pointer since he doesn't own it
     ChatLogic *GetChatLogicHandle() { return _chatLogic.get(); }
 

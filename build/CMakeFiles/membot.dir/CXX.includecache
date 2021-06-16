@@ -6,10 +6,46 @@
 
 #IncludeRegexTransform: 
 
+/home/workspace/chatbot/src/chatbot.cpp
+iostream
+-
+random
+-
+algorithm
+-
+ctime
+-
+chatlogic.h
+/home/workspace/chatbot/src/chatlogic.h
+graphnode.h
+/home/workspace/chatbot/src/graphnode.h
+graphedge.h
+/home/workspace/chatbot/src/graphedge.h
+chatbot.h
+/home/workspace/chatbot/src/chatbot.h
+
 /home/workspace/chatbot/src/chatbot.h
 wx/bitmap.h
 -
 string
+-
+
+/home/workspace/chatbot/src/chatgui.cpp
+wx/filename.h
+-
+wx/colour.h
+-
+wx/image.h
+-
+string
+-
+chatbot.h
+/home/workspace/chatbot/src/chatbot.h
+chatlogic.h
+/home/workspace/chatbot/src/chatlogic.h
+chatgui.h
+/home/workspace/chatbot/src/chatgui.h
+memory
 -
 
 /home/workspace/chatbot/src/chatgui.h
@@ -54,6 +90,12 @@ chatgui.h
 memory
 -
 
+/home/workspace/chatbot/src/graphedge.cpp
+graphnode.h
+/home/workspace/chatbot/src/graphnode.h
+graphedge.h
+/home/workspace/chatbot/src/graphedge.h
+
 /home/workspace/chatbot/src/graphedge.h
 vector
 -
@@ -65,6 +107,8 @@ graphedge.h
 /home/workspace/chatbot/src/graphedge.h
 graphnode.h
 /home/workspace/chatbot/src/graphnode.h
+memory
+-
 
 /home/workspace/chatbot/src/graphnode.h
 vector

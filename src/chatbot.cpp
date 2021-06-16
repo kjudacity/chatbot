@@ -46,26 +46,32 @@ ChatBot::~ChatBot()
 ////
 // KJ - Copy Constructor
 ChatBot::ChatBot(const ChatBot &other){
+
     // KJ - As requested - print out constructor/copy/move/destructor statements
     std::cout << "ChatBot Copy Constructor :) \n";
+
     // data handles (owned) - KJ - need to make a new one since this is owned by the ChatBot
     _image = new wxBitmap(*other._image); // avatar image
 
-    // data handles (not owned) - KJ - copying data 
+    // data handles (not owned) - KJ - copying  
     _currentNode = other._currentNode;
     _rootNode = other._rootNode;
     _chatLogic = other._chatLogic;
+
 } //  Copy Constructor
 
 // KJ - Copy Assignment Operator
 ChatBot& ChatBot::operator=(const ChatBot &other) {
+
     // KJ - As requested - print out constructor/copy/move/destructor statements
     std::cout << "ChatBot Copy Assignment Operator :) \n";
+
     // Protect against self copy
     if (&other != this) {
         // KJ create a new image
         delete _image;
         _image = new wxBitmap(*other._image);
+
         // data handles (not owned) - KJ - copying data 
         _currentNode = other._currentNode;
         _rootNode = other._rootNode;
@@ -78,12 +84,15 @@ ChatBot& ChatBot::operator=(const ChatBot &other) {
 
 // KJ - Move Constructor
 ChatBot::ChatBot(ChatBot &&other) {
+
     // KJ - As requested - print out constructor/copy/move/destructor statements
     std::cout << "ChatBot Move Constructor :) \n";
-    // KJ create a new image
+
+    // KJ create a copy image and delete the old pointer
     _image = other._image;
     other._image = nullptr;
-    // data handles (not owned) - KJ - copying data 
+
+    // data handles (not owned) - KJ - copying data and deleting it from where it came frome
     _currentNode = other._currentNode;
     _rootNode = other._rootNode;
     _chatLogic = other._chatLogic;
@@ -95,15 +104,18 @@ ChatBot::ChatBot(ChatBot &&other) {
 
 // KJ - Move Assignment Operator
 ChatBot& ChatBot::operator=(ChatBot &&other){
+
     // KJ - As requested - print out constructor/copy/move/destructor statements
     std::cout << "ChatBot Move Assignment Operator :) \n";
     
     // Protect against self copy
     if (&other != this) {
+
         // KJ create a new image
         delete _image;
         _image = new wxBitmap(*other._image);
         other._image = nullptr;
+        
         // data handles (not owned) - KJ - copying data 
         _currentNode = other._currentNode;
         _rootNode = other._rootNode;
@@ -164,6 +176,8 @@ void ChatBot::SetCurrentNode(GraphNode *node)
     std::string answer = answers.at(dis(generator));
 
     // send selected node answer to user
+    // KJ - TODO make sure this is right...
+    _chatLogic->SetChatbotHandle(this); // we need to now??
     _chatLogic->SendMessageToUser(answer);
 }
 

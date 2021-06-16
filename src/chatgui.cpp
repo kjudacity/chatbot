@@ -121,7 +121,7 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     ////
 
     // create chat logic instance
-    //_chatLogic = new ChatLogic(); 
+
     // KJ - update to be unique pointer
     _chatLogic = std::make_unique<ChatLogic>();
 
@@ -139,7 +139,7 @@ ChatBotPanelDialog::~ChatBotPanelDialog()
 {
     //// STUDENT CODE
     ////
-    // KJ - this guy shouldn't be deleteing chatLogic TODO...where do i delet him now?
+    // KJ - this shouldn't be deleteing chatLogic 
     // delete _chatLogic;
 
     ////
