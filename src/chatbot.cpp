@@ -57,6 +57,7 @@ ChatBot::ChatBot(const ChatBot &other){
     _currentNode = other._currentNode;
     _rootNode = other._rootNode;
     _chatLogic = other._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
 
 } //  Copy Constructor
 

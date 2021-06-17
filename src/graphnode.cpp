@@ -37,7 +37,7 @@ void GraphNode::AddEdgeToChildNode(std::unique_ptr<GraphEdge> edge) // KJ - chan
 ////
 void GraphNode::MoveChatbotHere(ChatBot chatbot) 
 {
-    _chatBot = chatbot; // KJ - use the move constructor that was overloaded
+    _chatBot = std::move(chatbot); // KJ - use the move constructor that was overloaded
      _chatBot.SetCurrentNode(this);
 }
 
